@@ -9,7 +9,6 @@ public class PlayerController2D : MonoBehaviour
     public float moveSpeed; // player moving speed
     public float jumpHeight; // player jumping height
     public Transform groundPoint; // point to detect if player is grounded
-    public float radius; // radius to check if player is grounded
     public LayerMask groundMask; // what is ground?
     public GameObject dog; // the doooog
     public AudioClip jumpSound; // jumping sound
@@ -24,25 +23,25 @@ public class PlayerController2D : MonoBehaviour
     private AudioSource audioSource;
     private float randomPitch;
     private float originalPitch;
+    private Vector3 groundCheckDistance;
 
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         originalPitch = audioSource.pitch;
+        groundCheckDistance = new Vector3(0f, 0.5f, 0f);
     }
 
 
     void Update()
     {
         // check if player is touching the ground
-        isGrounded = Physics2D.OverlapCircle(groundPoint.position, radius, groundMask);
-        
-        //X Axis movement
-        if (isGrounded)
-        {
-            Move();
-        }
+        isGrounded = Physics2D.Linecast(groundPoint.position, groundPoint.position - groundCheckDistance);
+
+        // apply movement
+        Move();
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump();

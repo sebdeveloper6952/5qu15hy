@@ -31,7 +31,7 @@ public class CGrabberScript : MonoBehaviour
             {
                 Physics2D.queriesStartInColliders = false;
                 hit = Physics2D.Raycast(rayPoint.position, Vector2.right * transform.localScale.x, distance);
-                if (hit.collider != null && hit.collider.name == "Dog")
+                if (hit.collider != null && hit.collider.tag == "Pickable")
                 {
                     grabbed = true;
                 }
@@ -46,9 +46,9 @@ public class CGrabberScript : MonoBehaviour
                     colliderRB.velocity = new Vector2(transform.localScale.x, 1f) * throwforce;
                     float randomTorque = Random.Range(-50f, 50f);
                     colliderRB.AddTorque(randomTorque, ForceMode2D.Impulse);
-                    audioSource.clip = tossSound;
-                    audioSource.pitch = Random.Range(originalPitch - 0.2f, originalPitch + 0.2f);
-                    audioSource.Play(); // play toss sound
+                    //audioSource.clip = tossSound;
+                    //audioSource.pitch = Random.Range(originalPitch - 0.2f, originalPitch + 0.2f);
+                    //audioSource.Play(); // play toss sound
                 }
             }
         }
