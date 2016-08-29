@@ -99,7 +99,7 @@ public class PlayerController2D : MonoBehaviour
     /// <param name="other"></param>
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Damage")
+        if (other.tag == "Damage" || other.tag == "Enemy")
         { 
             this.Die();
         }

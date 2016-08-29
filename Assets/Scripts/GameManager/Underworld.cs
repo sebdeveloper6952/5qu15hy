@@ -5,12 +5,12 @@ public class Underworld : MonoBehaviour
 {
 
     private PlayerController2D player;
-    private DogDamage dog;
+    private SquishyDamage dog;
 	
     void Start()
     {
         player = FindObjectOfType<PlayerController2D>();
-        dog = FindObjectOfType<DogDamage>();
+        dog = FindObjectOfType<SquishyDamage>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
