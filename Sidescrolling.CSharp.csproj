@@ -63,21 +63,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Bomb\BombManager.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraFollows.cs" />
-    <Compile Include="Assets\Scripts\Dog\DogAudio.cs" />
-    <Compile Include="Assets\Scripts\Dog\DogBark.cs" />
-    <Compile Include="Assets\Scripts\Dog\DogDamage.cs" />
-    <Compile Include="Assets\Scripts\Dog\damageDog.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\Lives.cs" />
     <Compile Include="Assets\Scripts\GameManager\Underworld.cs" />
     <Compile Include="Assets\Scripts\GameObject\DestroyGameObject.cs" />
-    <Compile Include="Assets\Scripts\GrabStuff.cs" />
     <Compile Include="Assets\Scripts\Meta\Ganar2.cs" />
     <Compile Include="Assets\Scripts\Player\BloodParticleSystem.cs" />
-    <Compile Include="Assets\Scripts\Player\CGrabberScript.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController2D.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerGrabObject.cs" />
+    <Compile Include="Assets\Scripts\Squishy\SquishyDamage.cs" />
+    <Compile Include="Assets\Scripts\Squishy\SquishyGrabManager.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI\ScrollingText.cs" />
