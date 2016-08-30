@@ -8,14 +8,14 @@ public class GameManager : MonoBehaviour
     public Text gameManagerText; // used to let know the player when he wins or loses
     public GameObject player; // the player in scene
 
-    private SquishyDamage dog; // used to access the dogs damage system
+    private SquishyHealthManager dog; // used to access the dogs damage system
     private PlayerController2D playerInput; // used to disable/enable player input
     private Rigidbody2D playerRB; // rigidbody attached to the player
 
 	// Use this for initialization
 	void Start ()
     {
-        dog = FindObjectOfType<SquishyDamage>();
+        dog = FindObjectOfType<SquishyHealthManager>();
         playerInput = player.GetComponent<PlayerController2D>();
         playerRB = player.GetComponent<Rigidbody2D>();
 	}

@@ -5,23 +5,16 @@ public class Underworld : MonoBehaviour
 {
 
     private PlayerController2D player;
-    private SquishyDamage dog;
+    private SquishyHealthManager dog;
 	
     void Start()
     {
         player = FindObjectOfType<PlayerController2D>();
-        dog = FindObjectOfType<SquishyDamage>();
+        dog = FindObjectOfType<SquishyHealthManager>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
-        {
-            player.Die();
-        }
-        if (other.name == "Dog")
-        {
-            dog.Respawn();
-        }
+        other.SendMessage("Die", SendMessageOptions.DontRequireReceiver);
     }
 }

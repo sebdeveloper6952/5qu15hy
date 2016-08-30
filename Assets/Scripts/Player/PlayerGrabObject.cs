@@ -3,12 +3,12 @@ using System.Collections;
 
 public class PlayerGrabObject : MonoBehaviour
 {
-    public Transform lineCastPoint;
-    public Transform itemHoldPoint;
-    GameObject item;
-    Rigidbody2D grabbedItemRb;
-    bool hasItem;
-    bool justThrown;
+    public Transform lineCastPoint; // at this point starts the linecast to check for grabbable objects
+    public float itemCheckDistance; // maximum distance an object will be picked up
+    public Transform itemHoldPoint; // point where the player holds an item
+
+    private GameObject item; // item the player is holding
+    private bool hasItem; // is the player holding and item?
 
 	// Use this for initialization
 	void Start ()
@@ -51,7 +51,7 @@ public class PlayerGrabObject : MonoBehaviour
     /// </summary>
     private void PickupItem()
     {
-        RaycastHit2D hitInfo = Physics2D.Linecast(lineCastPoint.position, lineCastPoint.position + new Vector3(1f, 0f, 0f));
+        RaycastHit2D hitInfo = Physics2D.Linecast(lineCastPoint.position, lineCastPoint.position + Vector3.right * itemCheckDistance);
         if (hitInfo.rigidbody != null) // TODO - add more validation
         {
             item = hitInfo.collider.gameObject;

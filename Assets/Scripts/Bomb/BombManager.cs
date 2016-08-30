@@ -7,22 +7,21 @@ public class BombManager : MonoBehaviour
     public float explosionRadius; // bomb explosion radius
     public float timer; // time the bomb explodes after been thrown
     public GameObject player; // the player in the scene
-    public GameObject dog; // dog in scene
     public Transform holdPoint; // point where the player holds the bomb
+    public ParticleSystem explosionEffect; // particle system to instantiate when exploding
 
     private Rigidbody2D rb; // rigidbody attached to this bomb
-    private bool grabbed; // is this bomb grabbed?
-    private bool thrown; // has this bomb been thrown already?
     private Vector2 throwForceV; // force vector passed to rb.AddForce()
-    private SquishyDamage dogDamage; // used to respawn the dog if necessary
+    private AudioSource audioSource;
+    private SpriteRenderer renderer;
 
 
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        grabbed = false;
-        dogDamage = dog.GetComponent<SquishyDamage>();
+        audioSource = GetComponent<AudioSource>();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -35,9 +34,7 @@ public class BombManager : MonoBehaviour
     /// </summary>
     void Throw()
     {
-        transform.parent = null;
-        rb.isKinematic = false;
-        rb.AddForce(throwForceV, ForceMode2D.Impulse);
+        StartCoroutine(TimedExplosion());
     }
 
     /// <summary>
@@ -48,5 +45,25 @@ public class BombManager : MonoBehaviour
         rb.isKinematic = true;
         transform.parent = holdPoint.transform;
         transform.position = holdPoint.position;
+    }
+
+    /// <summary>
+    /// Handles all the explosion process.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator TimedExplosion()
+    {
+        transform.parent = null;
+        rb.isKinematic = false;
+        rb.AddForce(throwForceV, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(timer);
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, explosionRadius))
+        {
+            col.SendMessage("Die", SendMessageOptions.DontRequireReceiver);
+        }
+        renderer.enabled = false;
+        audioSource.Play();
+        explosionEffect.Play();
+        Destroy(gameObject, explosionEffect.duration);
     }
 }

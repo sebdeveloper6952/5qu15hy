@@ -11,14 +11,14 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D rigidbody;
 
-    void Start()
+    private void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         colliding = false;
         Physics2D.queriesStartInColliders = false;
     }
 
-    void Update()
+    private void Update()
     {
         rigidbody.velocity = new Vector2(movementSpeed, rigidbody.velocity.y);
         colliding = Physics2D.Linecast(sightStart.position, sightEnd.position);
@@ -26,6 +26,14 @@ public class EnemyMovement : MonoBehaviour
         {
             transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
             movementSpeed *= -1;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag != "Enemy")
+        {
+            other.SendMessage("Die", SendMessageOptions.DontRequireReceiver);
         }
     }
 }
