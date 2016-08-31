@@ -10,7 +10,7 @@ public class PlayerController2D : MonoBehaviour
     public float jumpHeight; // player jumping height
     public Transform groundPoint; // point to detect if player is grounded
     public LayerMask groundMask; // what is ground?
-    public GameObject dog; // the doooog
+    public GameObject dog; // Squishy!
     public AudioClip jumpSound; // jumping sound
     public AudioClip[] dieSounds; // array of different dying sounds
     public GameObject blood; // particle system for when the player dies
@@ -18,13 +18,13 @@ public class PlayerController2D : MonoBehaviour
     private bool isGrounded; // player is grounded?
     private Rigidbody2D rigidbody; // rigidbody attached to player
     private Vector2 spawnPoint;
-
     private Vector2 moveDir;
     private AudioSource audioSource;
     private float randomPitch;
     private float originalPitch;
     private Vector3 groundCheckDistance;
 
+    
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -81,7 +81,7 @@ public class PlayerController2D : MonoBehaviour
     /// <summary>
     /// Handle the player death
     /// </summary>
-    public void Die()
+    private void Die()
     {
         Instantiate(blood, transform.position, transform.rotation); // play blood particle system
         gameObject.SetActive(false);

@@ -8,39 +8,34 @@ public class SquishyHealthManager : MonoBehaviour
     public Transform spawnCeption; // the spawn point of the spawn point
     public Text livesText; // UI text to show lives left
 
-    private Rigidbody2D rigidbody;
-    private bool dead;
-
     // Use this for initialization
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
-        livesText.text = "x " + this.lives;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        livesText.text = "x " + this.lives; // TODO - this shouldn't be here.
     }
     
+        
     /// <summary>
     /// decrease lives by 1, update the UI text that shows lives
     /// </summary>
-    private void Die()
+     private void Die()
     {
+        transform.parent = null;
+        transform.position = spawnCeption.position;
         if (this.lives > 0)
         {
-            transform.parent = null;
-            rigidbody.velocity = Vector2.zero; // zero the dogs' velocity
-            this.transform.position = spawnCeption.position; // respawn dog in spawnCeption position
-            this.lives--; // reduce dogs' lives by 1
+            Respawn();
         }
-        livesText.text = "x " + this.lives; // adjust the UI
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void Respawn()
     {
-
+        PlayerGrabObject.instance.hasItem = false;
+        PlayerGrabObject.instance.item = null;
+        this.lives--;
+        livesText.text = "x " + this.lives; // adjust the UI
     }
 }

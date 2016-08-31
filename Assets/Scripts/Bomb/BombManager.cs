@@ -12,7 +12,7 @@ public class BombManager : MonoBehaviour
 
     private Rigidbody2D rb; // rigidbody attached to this bomb
     private Vector2 throwForceV; // force vector passed to rb.AddForce()
-    private AudioSource audioSource;
+    private AudioSource audioSource; // used to play sounds
     private SpriteRenderer renderer;
 
 

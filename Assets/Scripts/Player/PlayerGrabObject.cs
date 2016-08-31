@@ -7,14 +7,17 @@ public class PlayerGrabObject : MonoBehaviour
     public float itemCheckDistance; // maximum distance an object will be picked up
     public Transform itemHoldPoint; // point where the player holds an item
 
-    private GameObject item; // item the player is holding
-    private bool hasItem; // is the player holding and item?
+    public GameObject item; // item the player is holding
+    public bool hasItem; // is the player holding and item?
+
+    public static PlayerGrabObject instance;
 
 	// Use this for initialization
 	void Start ()
     {
         item = null; // player starts with no item 
         hasItem = false; // player starts with no item
+        instance = this;
 	}
 	
 	// Update is called once per frame

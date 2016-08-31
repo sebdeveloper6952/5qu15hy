@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bomb\BombManager.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraFollows.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyHealthManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\Lives.cs" />
@@ -74,8 +75,8 @@
     <Compile Include="Assets\Scripts\Player\BloodParticleSystem.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController2D.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerGrabObject.cs" />
-    <Compile Include="Assets\Scripts\Squishy\SquishyDamage.cs" />
     <Compile Include="Assets\Scripts\Squishy\SquishyGrabManager.cs" />
+    <Compile Include="Assets\Scripts\Squishy\SquishyHealthManager.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI\ScrollingText.cs" />
